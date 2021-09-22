@@ -27,7 +27,8 @@ export function DashboardNews (props) {
         <>
             <Typography variant={'h6'}>Recent Articles</Typography>
             <Grid container spacing={1}>
-                {items && items.map((item) => (
+                {console.log(items)}
+                {items.length>0 && items.map((item) => (
                     <Grid item style={{width:'100%'}}>
                         <Card>
                             <CardHeader title={<Link href={item.link} color={"textPrimary"} style={{display:'inline-block',margin:'-16px',padding:'16px'}}>{item.title}</Link>}

@@ -34,6 +34,7 @@ export default class portfolio extends React.Component {
   }
 
   getApiContext(){
+    console.log(this.context.position.api);
     return this.context.position.api;
   }
 
@@ -107,17 +108,19 @@ export default class portfolio extends React.Component {
       refetchOnWindowFocus: false,
       enabled: false,
       getNextPageParam: (lastPage, pages) => {
+        
         return getSymbolsToQuery()
       }
     }, 'watchlist');
 
     this.obs.subscribe(rq => {
+      console.log("----123123-----", rq);
       if(rq.data) {
         let newItems = [];
-        rq.data.pages.forEach((value) => {
+        rq.data.pages && rq.data.pages.forEach((value) => {
           newItems = newItems.concat(value.result)
         });
-        this.processBulkQuotes(newItems);
+        // this.processBulkQuotes(newItems);
       }
     });
     this.fetchMore();
