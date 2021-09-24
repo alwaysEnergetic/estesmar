@@ -95,7 +95,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Layout = (props) => {
     const { window } = props;
-
     const classes = useStyles();
     const theme = useTheme();
     const history = useHistory();
@@ -120,7 +119,6 @@ const Layout = (props) => {
         });
 
     }, []);
-
 
     const toggleSearchFocus = () => {
         setSearchFocused(!searchFocused);
