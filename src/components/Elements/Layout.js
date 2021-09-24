@@ -88,6 +88,7 @@ const useStyles = makeStyles((theme) => ({
     textChange: {
         "& .MuiInputBase-root": {
             backgroundColor: theme.palette.type==='light'?'#006400':'dark',
+            border: theme.palette.type==='light'? '':"1px solid #8C6F46",
         },
     }
 }));
@@ -163,7 +164,7 @@ const Layout = (props) => {
                     <Grid item>
                         <ListItem button component={NavLink} to="/dashboard" activeClassName="Mui-selected" exact>
                             <ListItemIcon>
-                                <HomeOutlinedIcon color={"primary"}/>
+                                <HomeOutlinedIcon screenMode= {theme.palette.type} color={"primary"}/>
                             </ListItemIcon>
                         </ListItem>
                     </Grid>
@@ -213,7 +214,7 @@ const Layout = (props) => {
 
                 </Grid>
 
-                <Grid container alignItems={"center"} justify={"center"} item style={{flexGrow: 1}}>
+                {/* <Grid container alignItems={"center"} justify={"center"} item style={{flexGrow: 1}}>
                     <Grid item>
                         <Box style={{transform: 'rotate(-90deg)'}}>
                             <Typography variant={'h6'} style={{whiteSpace: 'nowrap'}}>
@@ -225,7 +226,7 @@ const Layout = (props) => {
                             </Typography>
                         </Box>
                     </Grid>
-                </Grid>
+                </Grid> */}
 
             </Grid>
 
@@ -258,7 +259,7 @@ const Layout = (props) => {
 
                 <Grid container item xs justify={"space-between"} alignItems={"center"}>
 
-                    <Grid item xs={6}>
+                    <Grid item xs={11}>
                         <motion.div
                             animate={searchFocused ? 'focus' : 'reg'}
                             variants={variants}
@@ -292,18 +293,6 @@ const Layout = (props) => {
                                     variant={'outlined'}
                                     className = {classes.textChange}
                                     placeholder={'صندوق الإستثمارات العامة '}
-                                    // InputProps = {{
-                                    //     classes: {
-                                    //         input: classes.input
-                                    //     },
-                                    //     startAdornment:<>
-                                    //     <InputAdornment position="start" style={{marginRight:0}}>
-                                    //         {/* <SearchOutlinedIcon /> */}
-                                    //         <img src = {logo} alt = "logo" style = {{width:62, height: 51, borderRight: "1px solid white", marginRight: 14, paddingRight: 8}}/>
-                                    //     </InputAdornment>
-                                    //     {params.InputProps.startAdornment}
-                                    // </>
-                                    // }}
                                 />}}
                             renderOption={(option, { selected }) => (<div>
                                 <Typography variant={'h6'}>{option.symbol}</Typography>
@@ -320,7 +309,7 @@ const Layout = (props) => {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Container style={{float: 'left'}}>
+        <Container style={{}}>
             <div className={classes.root}>
                 <AppBar position="fixed" className={classes.appBar} elevation={0}>
                     <Toolbar>
