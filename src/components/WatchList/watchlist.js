@@ -34,7 +34,7 @@ export default class portfolio extends React.Component {
   }
 
   getApiContext(){
-    console.log(this.context.position.api);
+    //console.log(this.context.position.api);
     return this.context.position.api;
   }
 
@@ -138,10 +138,12 @@ export default class portfolio extends React.Component {
   }
 
   processBulkQuotes(data){
+    console.log('=============',data)
+    
     for(let result of data){
       let i = 0;
       for(let j in watchlist){
-        if(result.symbol == watchlist[j]){
+        if(result.symbol === watchlist[j]){
           i = j;
           break;
         }

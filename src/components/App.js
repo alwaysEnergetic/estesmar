@@ -123,7 +123,8 @@ class App extends Component {
     const themeColors = {
       palette: {
         success: {
-          main: '#4caf50'
+          main: '#4caf50',
+          red:'#ff0000'
         },
         error: {
           main: '#ff3d00'
@@ -141,6 +142,9 @@ class App extends Component {
       palette: {
         type: 'dark',
       },
+      textFieldColor: {
+        type: 'dark',
+      }
     }});
 
     if (this.state.theme === "light") {

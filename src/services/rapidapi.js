@@ -31,8 +31,10 @@ export const ApiProvider = (props) => {
 
 export class RapidApi {
 
-    apiKey = process.env["REACT_APP_X_RAPIDAPI_KEY"];
-    apiHost = process.env["REACT_APP_X_RAPIDAPI_HOST"];
+    // apiKey = process.env["REACT_APP_X_RAPIDAPI_KEY"];
+    // apiHost = process.env["REACT_APP_X_RAPIDAPI_HOST"];
+    apiKey = "4e8db14840msha329a58a3e7b8a5p19284ajsn6b6e8578bafb";
+    apiHost = "apidojo-yahoo-finance-v1.p.rapidapi.com";
 
     rqOptions = {retry: true };
 
@@ -59,21 +61,21 @@ export class RapidApi {
     }
 
     getChart$(symbol, interval, range){
-        return this._pipe$(this._get$(`https://yahoo-finance-low-latency.p.rapidapi.com/v8/finance/chart/${symbol}?interval=${interval}&range=${range}`), 'chart');
+        return this._pipe$(this._get$(`https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/get-charts?symbol=${symbol}&interval=${interval}&range=${range}&region=US`), 'chart');
     }
 
     getQuoteSummary$(symbol){
-        return this._pipe$(this._get$(`https://yahoo-finance-low-latency.p.rapidapi.com/v11/finance/quoteSummary/${symbol}?modules=price,summaryDetail,defaultKeyStatistics,financialData,assetProfile,indexTrend,incomeStatementHistory,balanceSheetHistory`), 'quoteSummary');
+        return this._pipe$(this._get$(`https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/v2/get-summary?region=US`), 'quoteSummary');
     }
 
     getBulkQuotes$(symbols){
-        return this._pipe$(this._get$(`https://yahoo-finance-low-latency.p.rapidapi.com/v6/finance/quote?symbols=${symbols.join(',')}`), 'quoteResponse');
+        return this._pipe$(this._get$(`https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/v2/get-quotes?symbols=${symbols.join(',')}`), 'quoteResponse');
     }
 
     getNews$(query, freshness, count){
-        return this._get$(`https://bing-news-search1.p.rapidapi.com/news/search?q=${query}&safeSearch=Off&textFormat=Raw&freshness=${freshness}&sortBy=date&count=${count}`, {
-            "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
-            "x-bingapis-sdk": "true"
+        return this._get$(`https://apidojo-yahoo-finance-v1.p.rapidapi.com/news/v2/get-details`, {
+            "x-rapidapi-host": "apidojo-yahoo-finance-v1.p.rapidapi.com",
+            "x-rapidapi-key": "4e8db14840msha329a58a3e7b8a5p19284ajsn6b6e8578bafb"
         });
     }
 

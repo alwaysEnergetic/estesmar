@@ -16,9 +16,11 @@ export class SymbolCache {
     constructor() {
         this.inited = true;
         let gref = ref(getDatabase(), "/");
+        
         if (this.collection.length === 0) {
             onValue(gref, (snapshot) => {
                 snapshot.val().map((index) => {
+                    //console.log('----------------------------------', index);
                     this.collection.push(index);
                 });
                 this.loaded.next();

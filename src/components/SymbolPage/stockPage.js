@@ -369,7 +369,6 @@ export class StockPage extends React.Component {
 
 	componentWillUnmount() {
 		this._isMounted = false;
-		console.log(2222)
 		chartData1 = [];
 		labels = [];
 

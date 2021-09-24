@@ -187,7 +187,7 @@ class Dashboard extends React.Component {
 			</Grid>
 
 			<Grid item>
-				{/* <DashboardNews/> */}
+				<DashboardNews/>
 			</Grid>
 
 		</Grid>

@@ -66,6 +66,7 @@ export function Sector (props) {
     }, ['bulk_quotes', sector])();
 
     useEffect(()=> {
+        //console.log(sc.cache.collection)
         sc.cache.loaded.subscribe(() => {
             setCacheLoaded(true);
         });

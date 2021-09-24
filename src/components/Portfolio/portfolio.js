@@ -50,7 +50,7 @@ export default class portfolio extends React.Component {
     for(let result of data) {
       let ai = [];
       for (let j in symbols) {
-        if (result.symbol == symbols[j]) {
+        if (result.symbol === symbols[j]) {
           ai.push(j);
         }
       }

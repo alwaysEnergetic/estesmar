@@ -25,6 +25,7 @@ import PieChartOutlinedIcon from '@material-ui/icons/PieChartOutlined';
 import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import Brightness4OutlinedIcon from '@material-ui/icons/Brightness4Outlined';
+import logo from '../../images/logo.png';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import AccountBalanceWalletOutlinedIcon from '@material-ui/icons/AccountBalanceWalletOutlined';
 
@@ -77,10 +78,21 @@ const useStyles = makeStyles((theme) => ({
             padding: theme.spacing(3),
         }
     },
+    input: {
+        "&::placeholder": {
+            fontSize: 25,
+            color: "#CCA266",
+            fontWeight: 900
+          }
+    },
+    textChange: {
+        "& .MuiInputBase-root": {
+            backgroundColor: theme.palette.type==='light'?'#006400':'dark',
+        },
+    }
 }));
 
 const Layout = (props) => {
-
     const { window } = props;
 
     const classes = useStyles();
@@ -130,7 +142,7 @@ const Layout = (props) => {
     };
 
     const searchStocks = (filter) => {
-        if(filter == ''){
+        if(filter === ''){
             setSearchOptions([]);
             return;
         }
@@ -181,7 +193,7 @@ const Layout = (props) => {
                                     onChange={handleThemeMode}
                                 >
                                     <ToggleButton value="dark">
-                                        <Brightness4OutlinedIcon/>
+                                         <Brightness4OutlinedIcon/>
                                     </ToggleButton>
                                 </ToggleButtonGroup>
                             </Box>
@@ -222,12 +234,12 @@ const Layout = (props) => {
 
     const variants = {
         reg: {width: '100%'},
-        focus: {width : '120%', backgroundColor: theme.palette.background.paper}
+        focus: {width : '100%', backgroundColor: theme.palette.background.paper}
     }
 
     const topbar = (
         <Grid container>
-            <Grid container item md={6} xs={12}>
+            <Grid container item md={12} xs={12}>
                 {!isSmall() &&
                     <Grid item>
                         <Box p={1}>
@@ -253,28 +265,45 @@ const Layout = (props) => {
                         >
                         <Autocomplete
 
-                                      onFocus={toggleSearchFocus}
-                                      onBlur={toggleSearchFocus}
+                            onFocus={toggleSearchFocus}
+                            onBlur={toggleSearchFocus}
                             options={searchOptions}
                             onInputChange={(event, newInputValue) => {
                                 searchStocks(newInputValue)
                             }}
-                            onChange={(event, value) => history.push(`/stocks/${value.symbol}`)}
-                            getOptionLabel={(option) => option.symbol}
-                            filterOptions = {(option, value) => {
+                            onChange={(event, value) => {
+                                if(value)
+                                    history.push(`/stocks/${value.symbol}`)}}
+                                getOptionLabel={(option) => option.symbol}
+                                filterOptions = {(option, value) => {
                                 return option;
                             }}
                             renderInput={(params) => {
                                 params.InputProps.startAdornment = <>
                                     <InputAdornment position="start" style={{marginRight:0}}>
-                                        <SearchOutlinedIcon />
+                                        {/* <SearchOutlinedIcon /> */}
+                                        <img src = {logo} alt = "logo" style = {{width:62, height: 51, borderRight: "1px solid white", marginRight: 14, paddingRight: 8}}/>
                                     </InputAdornment>
                                     {params.InputProps.startAdornment}
                                 </>;
+                                params.InputProps.classes = {input: classes.input};
                                 return <TextField {...params}
                                     size={isSmall() ? 'small' : 'medium'}
                                     variant={'outlined'}
-                                    placeholder={'Search by symbol or name'}
+                                    className = {classes.textChange}
+                                    placeholder={'صندوق الإستثمارات العامة '}
+                                    // InputProps = {{
+                                    //     classes: {
+                                    //         input: classes.input
+                                    //     },
+                                    //     startAdornment:<>
+                                    //     <InputAdornment position="start" style={{marginRight:0}}>
+                                    //         {/* <SearchOutlinedIcon /> */}
+                                    //         <img src = {logo} alt = "logo" style = {{width:62, height: 51, borderRight: "1px solid white", marginRight: 14, paddingRight: 8}}/>
+                                    //     </InputAdornment>
+                                    //     {params.InputProps.startAdornment}
+                                    // </>
+                                    // }}
                                 />}}
                             renderOption={(option, { selected }) => (<div>
                                 <Typography variant={'h6'}>{option.symbol}</Typography>
@@ -282,16 +311,6 @@ const Layout = (props) => {
                             </div>)}
                         />
                         </motion.div>
-                    </Grid>
-
-                    <Grid item>
-                        <Box p={1}>
-                            <Link to="/portfolio">
-                                <Button size={isSmall() ? 'small' : 'medium'} variant="contained" startIcon={<AccountBalanceWalletOutlinedIcon/>}>
-                                    SAR {funds ? formatNumber(funds.toFixed(0)) : ''}
-                                </Button>
-                            </Link>
-                        </Box>
                     </Grid>
                 </Grid>
             </Grid>
