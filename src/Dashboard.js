@@ -185,6 +185,7 @@ class Dashboard extends React.Component {
 
 	render() {
 		const { classes } = this.props;
+		console.log(this.props);
 		return (
 			// !/xs/.test(this.props.width) ?
 			<div>
